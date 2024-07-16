@@ -15,11 +15,13 @@ export class SelectingDate{
     }
 
     async selectDatepickerwithRangeFromToday(startDayFromToday: number, endDayFromToday: number){
+        await this.page.getByTitle('Forms').click();
+        await this.page.getByTitle('Datepicker').click();
         const formPicker = await this.page.getByPlaceholder('Range Picker')
         await formPicker.click()
         const dateToAssertStart = await this.dateRangeSelector(startDayFromToday)
         const dateToAssertEnd = await this.dateRangeSelector(endDayFromToday)
-        const dateToAssert = `$(dateToAssertStart) - $(dateToAssertEnd)`;
+        const dateToAssert = `${dateToAssertStart} - ${dateToAssertEnd}`;
         await expect(formPicker).toHaveValue(dateToAssert);
     }
 
@@ -43,33 +45,6 @@ export class SelectingDate{
         }
     
         await this.page.locator("[class='range-cell day-cell ng-star-inserted']").getByText(expectedDate,{exact:true}).click()
-    }
-
-
-    async method() {
-        await this.page.getByTitle('Forms').click();
-        await this.page.getByTitle('Datepicker').click();
-        const formPicker = await this.page.getByPlaceholder('Form Picker')
-        formPicker.click()
-    
-        let date = new Date();
-        date.setDate(date.getDate() + 500)
-        const expectedDate = date.getDate().toString()
-        const expectedMonthShort = date.toLocaleString('En-US', {month:'short'})
-        const expectedMonthLong = date.toLocaleString('En-US', {month:'long'})
-    
-        const expectedYear = date.getFullYear()
-        const dateToAssert = `${expectedMonthShort} ${expectedDate}, ${expectedYear}`
-        
-        //getting calendar month and year
-        let calendarMonthYear = await this.page.locator('nb-calendar-view-mode').textContent()
-        const expectedMonthYear = `${expectedMonthLong} ${expectedYear}`
-        
-        while(!calendarMonthYear.includes(expectedMonthYear)){
-            await this.page.locator("[data-name='chevron-right']").click()
-            calendarMonthYear = await this.page.locator('nb-calendar-view-mode').textContent()
-        }
-        await this.page.locator("[class='day-cell ng-star-inserted']").getByText(expectedDate,{exact:true}).click()
-        
+        return dateToAssert;
     }
 }

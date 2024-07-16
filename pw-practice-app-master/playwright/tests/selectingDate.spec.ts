@@ -7,5 +7,6 @@ test.beforeEach("Before each", async({page}) => {
 
 test("validating input details", async({page}) => {
     const selectingdate = new SelectingDate(page);
-    await selectingdate.selectDate(5);
+    // await selectingdate.selectDate(5);
+    await selectingdate.selectDatepickerwithRangeFromToday(4, 15);
 })
