@@ -21,7 +21,6 @@ export class SelectingDate{
         const dateToAssertEnd = await this.dateRangeSelector(endDayFromToday)
         const dateToAssert = `$(dateToAssertStart) - $(dateToAssertEnd)`;
         await expect(formPicker).toHaveValue(dateToAssert);
-
     }
 
     private async dateRangeSelector(noofDaysFromToday: number){
