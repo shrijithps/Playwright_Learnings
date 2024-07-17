@@ -1,7 +1,7 @@
 import { Locator, Page } from "@playwright/test";
 import {test, expect} from '@playwright/test';
 
-export class SelectingDate{
+export class SelectingDatePage{
     readonly page : Page
 
     constructor(page : Page){
