@@ -42,7 +42,7 @@ test("Clicking submit button", async({page}) => {
   expect(buttonText).toEqual('Submit')
 })
 
-test.only("validating text in radio boxes", async({page})=> {
+test("validating text in radio boxes", async({page})=> {
   await page.getByTitle('Form Layouts').click();
   const option = await page.locator('nb-card').getByText('Option 1').textContent()
   expect(option).toEqual('Option 2');
