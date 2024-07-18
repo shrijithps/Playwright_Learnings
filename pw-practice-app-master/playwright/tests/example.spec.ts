@@ -3,7 +3,7 @@ import {faker} from '@faker-js/faker';
 
 test.beforeEach('Before each block', async ({page}) =>{
   await page.goto('http://localhost:4200');
-  await page.getByText('Forms').click();
+  await page.getByTitle('Forms').click();
 })
 
 test('clicking form layouts', async ({ page }) => {
@@ -42,22 +42,23 @@ test("Clicking submit button", async({page}) => {
   expect(buttonText).toEqual('Submit')
 })
 
-test("validating text in radio boxes", async({page})=> {
+test.only("validating text in radio boxes", async({page})=> {
   await page.getByTitle('Form Layouts').click();
   const option = await page.locator('nb-card').getByText('Option 1').textContent()
-  expect(option).toEqual('Option 1');
+  expect(option).toEqual('Option 2');
 })
 
 test("validating input details", async({page}) => {
+  const randomEmail = faker.internet.email()
   const basicForm = page.locator('nb-card').filter({hasText:"Basic form"});
   const email = basicForm.locator("[name='basicformEmail']")
   await page.getByTitle('Form Layouts').click();
 
-  email.fill("p.shrijith+0330@tv.com")
-  await expect(email).toHaveValue('p.shrijith+0330@tv.com')
+  email.fill(randomEmail)
+  await expect(email).toHaveValue(randomEmail)
   const textboxvalue = await email.inputValue();
   console.log(textboxvalue)
-  expect(textboxvalue).toEqual('p.shrijith+0330@tv.com')
+  expect(textboxvalue).toEqual(randomEmail)
 
   const emailplaceholder = await email.getAttribute('type')
   expect(emailplaceholder).toEqual('email')
