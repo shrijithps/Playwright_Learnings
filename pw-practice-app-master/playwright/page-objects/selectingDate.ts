@@ -1,11 +1,11 @@
 import { Locator, Page } from "@playwright/test";
 import {test, expect} from '@playwright/test';
+import { HelperBase } from "./helperBase";
 
-export class SelectingDatePage{
-    readonly page : Page
-
+export class SelectingDatePage extends HelperBase{
+    
     constructor(page : Page){
-        this.page = page
+        super(page)
     }
 
     async selectDate(noofDaysFromToday: number){
