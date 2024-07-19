@@ -14,7 +14,6 @@ test("Selecting dropdown", async ({ page }) => {
     await page.waitForTimeout(5000)
     // Wait for the dropdown to appear
     await page.waitForSelector('.sc-dnqmqq.dZhbJF'); // Adjust selector as per the actual dropdown
-
     // Get all options in the dropdown
     const options = await page.locator("text[class='placeHolderMainText']").allTextContents();
     console.log(options)
