@@ -9,4 +9,5 @@ test.beforeEach("Before each", async({page}) => {
 test("validating input details", async({page}) => {
     const pageManager = new PageManager(page);
     await pageManager.selectDate().selectDatepickerwithRangeFromToday(4, 15);
+    await page.screenshot({path:"testScreenshots/selectingdate.png"})
 })

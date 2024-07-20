@@ -1,4 +1,5 @@
 import {expect, test} from '@playwright/test'
+import path from 'path';
 
 test("autoWaitTest", async({page}) =>{
     await page.goto('http://www.uitestingplayground.com/ajax');

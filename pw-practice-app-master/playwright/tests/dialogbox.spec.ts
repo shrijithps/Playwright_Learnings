@@ -11,5 +11,4 @@ test('dialog box', async({page}) => {
     })
     
     await page.getByRole('table').locator('tr', {hasText:'mdo@gmail.com'}).locator('.nb-trash').click()
-
 })
