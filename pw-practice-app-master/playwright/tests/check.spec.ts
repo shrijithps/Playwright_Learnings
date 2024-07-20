@@ -1,6 +1,6 @@
 import {test, expect} from 'playwright/test'
 
-test('Test Suite111', async({page}) => {
+test('clicking checkbox', async({page}) => {
     const modalOverlays = page.locator('nb-menu').getByTitle('Modal & Overlays');
     await page.goto('http://localhost:4200')
     modalOverlays.click();

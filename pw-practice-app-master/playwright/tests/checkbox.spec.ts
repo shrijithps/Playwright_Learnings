@@ -1,7 +1,6 @@
 import {test, expect} from 'playwright/test'
 
 test('Test Suite', async({page}) => {
-    
     await page.goto('http://localhost:4200')
     await page.getByTitle('Modal & Overlays').click();
     await page.getByTitle('Toastr').click();

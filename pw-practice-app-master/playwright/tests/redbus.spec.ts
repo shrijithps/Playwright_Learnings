@@ -7,7 +7,7 @@ test("Selecting dropdown", async ({ page }) => {
     await page.locator('#src').click();
 
     // Type "Bengaluru" into the input field
-    await page.locator('#src').type("Bengaluru",{delay:1000});
+    await page.locator('#src').pressSequentially("Bengaluru",{delay:1000});
     // await page.keyboard.type('World', { delay: 100 }); // Types slower, like a user
 
 

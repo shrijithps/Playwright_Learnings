@@ -1,7 +1,7 @@
 import {expect, test} from '@playwright/test';
 import { FillingCredentials } from '../page-objects/fillingCredentials';
 
-test.beforeEach("Before each", async({page}) => {
+test.beforeEach("Before each Block", async({page}) => {
     await page.goto('http://localhost:4200')
 })
 
