@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import {faker} from '@faker-js/faker';
 
 test.beforeEach('Before each block', async ({page}) =>{
-  await page.goto('http://localhost:4200');
+  await page.goto('/');
   await page.getByTitle('Forms').click();
 })
 

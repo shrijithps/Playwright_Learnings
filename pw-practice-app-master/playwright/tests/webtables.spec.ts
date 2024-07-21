@@ -1,7 +1,7 @@
 import {test, expect} from '@playwright/test'
 
 test.skip('dialog box', async({page}) => {
-    await page.goto('http://localhost:4200');
+    await page.goto('/');
     await page.getByTitle("Tables & Data").click();
     await page.getByTitle("Smart Table").click();
     const targetRow = page.getByRole('row', {name:'snow@gmail.com'})
@@ -23,7 +23,7 @@ test.skip('webtable', async({page}) => {
 
     const ages = ["20", "30", "40", "200"]
 
-    await page.goto('http://localhost:4200');
+    await page.goto('/');
     await page.getByTitle("Tables & Data").click();
     await page.getByTitle("Smart Table").click();
 
@@ -50,7 +50,7 @@ test.skip('webtable', async({page}) => {
 test.skip('validating username', async({page}) => {
     const ages = ["20", "30", "40", "200"]
 
-    await page.goto('http://localhost:4200');
+    await page.goto('/');
     await page.getByTitle("Tables & Data").click();
     await page.getByTitle("Smart Table").click();
 
@@ -62,7 +62,7 @@ test.skip('validating username', async({page}) => {
 })
 
 test('Date picker', async({page}) => {
-    await page.goto('http://localhost:4200')
+    await page.goto('/')
     await page.getByTitle('Forms').click();
     await page.getByTitle('Datepicker').click();
     const formPicker = await page.getByPlaceholder('Form Picker')

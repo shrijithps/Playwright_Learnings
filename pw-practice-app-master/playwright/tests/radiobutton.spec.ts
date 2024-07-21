@@ -1,7 +1,7 @@
 import {test, expect} from '@playwright/test'
 
 test("Test Suite", async({page}) => {
-    await page.goto('http://localhost:4200')
+    await page.goto('/')
     await page.getByTitle('Forms').click();
     await page.getByTitle('Form Layouts').click()
     const usingGrid = page.locator('nb-card', {hasText: "Using the Grid"})

@@ -2,7 +2,7 @@ import {test, expect} from '@playwright/test'
 
 
 test("Selecting dark theme", async ({ page }) => {
-        await page.goto('http://localhost:4200');
+        await page.goto('/');
         await page.locator("[status='primary']").click();
         await page.waitForSelector('nb-option', { state: 'visible' });
         const header = page.locator('nb-layout-header')

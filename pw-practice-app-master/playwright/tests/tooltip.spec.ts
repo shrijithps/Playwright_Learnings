@@ -1,7 +1,7 @@
 import {test, expect} from '@playwright/test'
 
 test('test suite1', async({page}) => {
-    await page.goto('http://localhost:4200');
+    await page.goto('/');
     await page.locator('nb-menu').getByTitle('Modal & Overlays').click();
     await page.getByTitle('Tooltip').click();
     await page.getByRole('button', {name:'Top'}).hover()

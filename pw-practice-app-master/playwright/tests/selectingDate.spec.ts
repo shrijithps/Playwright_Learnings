@@ -3,10 +3,10 @@ import { PageManager } from "../page-objects/pageManager";
 
 
 test.beforeEach("Before each", async({page}) => {
-    await page.goto('http://localhost:4200')
+    await page.goto('/')
 })
 
-test("validating input details", async({page}) => {
+test("selecting and validating date fileds", async({page}) => {
     const pageManager = new PageManager(page);
     await pageManager.selectDate().selectDatepickerwithRangeFromToday(4, 15);
     await page.screenshot({path:"testScreenshots/selectingdate.png"})

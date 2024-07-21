@@ -1,7 +1,7 @@
 import {test, expect} from '@playwright/test'
 
 test('dialog box', async({page}) => {
-    await page.goto('http://localhost:4200');
+    await page.goto('/');
     await page.getByTitle("Tables & Data").click();
     await page.getByTitle("Smart Table").click();
 
