@@ -39,6 +39,21 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
+      name: 'dev',
+      use: { 
+        ...devices['Desktop Chrome'],
+        baseURL : "https://www.google.com"
+      },
+    },
+
+    {
+      name: 'staging',
+      use: { 
+        ...devices['Desktop Chrome'],
+        baseURL : "https://www.bing.com"
+      },
+    },
+    {
       name: 'chromium',
       use: { 
         // ...devices['Desktop Chrome'] 
