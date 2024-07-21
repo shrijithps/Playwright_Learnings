@@ -5,6 +5,7 @@ import type { TestOptions } from './test-options';
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
+require('dotenv').config();
 // import dotenv from 'dotenv';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
 
@@ -34,8 +35,10 @@ export default defineConfig<TestOptions>({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
     video: 'on',
-    baseURL : 'http://localhost:4200',
-    globalsQaURL : 'https://redbus.in'
+    globalsQaURL : 'https://redbus.in',
+    baseURL : process.env.DEV === '1' ? 'https://www.google.com'
+      : process.env.STAGING === '1' ? 'https://www.bing.com'
+      : 'http://localhost:4200',
   },
 
   /* Configure projects for major browsers */
