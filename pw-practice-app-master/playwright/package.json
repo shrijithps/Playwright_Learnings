@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "playwrightsample-draggertest": "npx playwright test example.spec.ts --project=chromium",
+    "playwrightsample-draggertest": "npx playwright test redbus.spec.ts --project=chromium",
     "playwrightsample-example": "npx playwright test example.spec.ts --project=firefox",
     "playwrightsample-all": "npm run playwrightsample-draggertest & npm run playwrightsample-example"
   },

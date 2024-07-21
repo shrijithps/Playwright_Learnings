@@ -1,17 +1,16 @@
-import { test, expect } from '@playwright/test';
+import { expect } from '@playwright/test';
+import {test} from '../test-options'
 
-test("Selecting dropdown", async ({ page }) => {
-    await page.goto("https://redbus.in");
+test("Selecting dropdown", async ({ page, globalsQaURL }) => {
+    await page.goto(globalsQaURL);
 
     // Click on the source input field
     await page.locator('#src').click();
 
     // Type "Bengaluru" into the input field
-    await page.locator('#src').pressSequentially("Bengaluru",{delay:1000});
-    // await page.keyboard.type('World', { delay: 100 }); // Types slower, like a user
+    await page.locator('#src').pressSequentially("Bengaluru",{delay:500});
 
-
-    await page.waitForTimeout(5000)
+    await page.waitForTimeout(1000)
     // Wait for the dropdown to appear
     await page.waitForSelector('.sc-dnqmqq.dZhbJF'); // Adjust selector as per the actual dropdown
     // Get all options in the dropdown

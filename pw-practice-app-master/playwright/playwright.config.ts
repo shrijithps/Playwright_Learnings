@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+import type { TestOptions } from './test-options';
 
 /**
  * Read environment variables from file.
@@ -10,7 +11,7 @@ import { defineConfig, devices } from '@playwright/test';
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
-export default defineConfig({
+export default defineConfig<TestOptions>({
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -33,7 +34,8 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
     video: 'on',
-    baseURL : 'http://localhost:4200'
+    baseURL : 'http://localhost:4200',
+    globalsQaURL : 'https://redbus.in'
   },
 
   /* Configure projects for major browsers */
