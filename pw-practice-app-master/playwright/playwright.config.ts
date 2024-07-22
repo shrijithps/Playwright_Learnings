@@ -36,9 +36,7 @@ export default defineConfig<TestOptions>({
     trace: 'on-first-retry',
     video: 'on',
     globalsQaURL : 'https://redbus.in',
-    baseURL : process.env.DEV === '1' ? 'https://www.google.com'
-      : process.env.STAGING === '1' ? 'https://www.bing.com'
-      : 'http://localhost:4200',
+    baseURL : 'http://localhost:4200',
   },
 
   /* Configure projects for major browsers */
@@ -47,7 +45,7 @@ export default defineConfig<TestOptions>({
       name: 'dev',
       use: { 
         ...devices['Desktop Chrome'],
-        baseURL : "https://www.google.com"
+        baseURL : "http://localhost:4200"
       },
     },
 
