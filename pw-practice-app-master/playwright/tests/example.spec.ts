@@ -1,67 +1,18 @@
 import { test, expect } from '@playwright/test';
-import {faker} from '@faker-js/faker';
 
-test.beforeEach('Before each block', async ({page}) =>{
-  await page.goto('/');
-  await page.getByTitle('Forms').click();
-})
+test('has title', async ({ page }) => {
+  await page.goto('https://playwright.dev/');
 
-test('clicking form layouts', async ({ page }) => {
-  await page.getByTitle('Form Layouts').click();
+  // Expect a title "to contain" a substring.
+  await expect(page).toHaveTitle(/Playwright/);
 });
 
-test('verifying grid using text', async({page}) => {
-  await page.locator(':text("Using the Grid")').isVisible();
-})
+test('get started link', async ({ page }) => {
+  await page.goto('https://playwright.dev/');
 
-test('verifying label', async({page}) => {
-  await page.getByTitle('Form Layouts').click();
-  await page.getByLabel('Email').first().click();
-  await page.locator('nb-radio-group nb-radio label').filter({hasText: 'Option 1'}).click()
-})
+  // Click the get started link.
+  await page.getByRole('link', { name: 'Get started' }).click();
 
-test('parent elements', async({page}) => {
-  await page.getByTitle('Form Layouts').click();
-  await page.locator('nb-card', {hasText:"Using the Grid"}).getByRole('textbox', {name:"Email"}).click();
-  await page.locator('nb-card', {has: page.locator('#inputEmail1')}).getByRole('textbox', {name:"Email"}).fill("s");
-})
-
-
-test("Fill details", async({page}) => {
-  const basicForm = page.locator('nb-card').filter({hasText:"Basic form"});
-  await page.getByTitle('Form Layouts').click();
-  // await basicForm.getByRole('textbox',{name:"basicformEmail"}).fill("p.shrijith+101@talview.com")
-  await basicForm.locator("[name='basicformEmail']").fill("p.shrijith+101@talview.com")
-  await basicForm.locator("[name='basicformPassword']").fill('Shri@098'); 
-})
-
-test("Clicking submit button", async({page}) => {
-  await page.getByTitle('Form Layouts').click();
-  const basicForm = page.locator('nb-card').filter({hasText:"Basic form"});
-  const buttonText = await basicForm.locator('button').textContent();
-  expect(buttonText).toEqual('Submit')
-})
-
-test("validating text in radio boxes", async({page})=> {
-  await page.getByTitle('Form Layouts').click();
-  const option = await page.locator('nb-card').getByText('Option 1').textContent()
-  expect(option).toEqual('Option 2');
-})
-
-test("validating input details", async({page}) => {
-  const randomEmail = faker.internet.email()
-  const basicForm = page.locator('nb-card').filter({hasText:"Basic form"});
-  const email = basicForm.locator("[name='basicformEmail']")
-  await page.getByTitle('Form Layouts').click();
-
-  email.fill(randomEmail)
-  await expect(email).toHaveValue(randomEmail)
-  const textboxvalue = await email.inputValue();
-  console.log(textboxvalue)
-  expect(textboxvalue).toEqual(randomEmail)
-
-  const emailplaceholder = await email.getAttribute('type')
-  expect(emailplaceholder).toEqual('email')
-  
-})
-
+  // Expects page to have a heading with the name of Installation.
+  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+});
