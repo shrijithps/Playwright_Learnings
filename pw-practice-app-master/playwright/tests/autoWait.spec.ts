@@ -1,6 +1,6 @@
 import {expect, test} from '@playwright/test'
 
-test("autoWaitTest", async({page}) =>{
+test("autoWaitTest @smoke", async({page}) =>{
     // await page.goto("http://www.uitestingplayground.com/ajax");
     await page.goto(process.env.URL)
     await page.locator("[id='ajaxButton']").click();
