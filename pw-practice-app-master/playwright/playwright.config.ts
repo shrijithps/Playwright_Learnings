@@ -59,10 +59,8 @@ export default defineConfig<TestOptions>({
     {
       name: 'chromium',
       use: { 
-        // ...devices['Desktop Chrome'] 
-        viewport : null
+         ...devices['Desktop Chrome'] 
       },
-      fullyParallel: true
     },
 
     {
