@@ -27,40 +27,40 @@ export default defineConfig<TestOptions>({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     launchOptions: {
-      args: ["--start-maximized"],
+    args: ['--window-size=1920,1080'] // Set window size to screen resolution
     },
+    viewport: null,
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
     video: 'on',
     globalsQaURL : 'https://redbus.in',
-    baseURL : 'http://localhost:4200',
+    baseURL : 'http://localhost:4200'
   },
+  
 
   /* Configure projects for major browsers */
   projects: [
-    {
-      name: 'dev',
-      use: { 
-        ...devices['Desktop Chrome'],
-        baseURL : "http://localhost:4200"
-      },
-    },
+    // {
+    //   name: 'dev',
+    //   use: { 
+    //     ...devices['Desktop Chrome'],
+    //     baseURL : "http://localhost:4200"
+    //   },
+    // },
 
-    {
-      name: 'staging',
-      use: { 
-        ...devices['Desktop Chrome'],
-        baseURL : "https://www.bing.com"
-      },
-    },
+    // {
+    //   name: 'staging',
+    //   use: { 
+    //     ...devices['Desktop Chrome'],
+    //     baseURL : "https://www.bing.com"
+    //   },
+    // },
     {
       name: 'chromium',
-      use: { 
-         ...devices['Desktop Chrome'] 
-      },
+      use: { ...devices['Desktop Chrome'] },
+      
     },
 
     {
