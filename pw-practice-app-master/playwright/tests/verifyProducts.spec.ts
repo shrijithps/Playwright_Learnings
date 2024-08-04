@@ -13,5 +13,5 @@ test("VerifyProducts", async({page}) => {
 
     const productLocator = page.locator("//h2[contains(text(), 'Blue Top')]/parent::div/parent::div[contains(@class, 'single-products')]");
     console.log(productLocator.isVisible())
-    await productLocator.locator('.choose').locator("//a/i[contains(text()='View Product')]").click();
+    await productLocator.locator('.choose').locator("//a[contains(text()='View Product')]").click();
 });
