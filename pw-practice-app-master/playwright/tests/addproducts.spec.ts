@@ -6,12 +6,24 @@ test("add products in playwright", async({page}) => {
     await page.locator(':text-is("Products")').click();
     await page.locator(":text-is('All Products')").isVisible();
 
-    const imageElement = page.locator("[src='/get_product_picture/1']");
-  
-    // Locate the paragraph element that is a sibling of the image element
-    const firstElement = imageElement.locator('xpath=following-sibling::p[contains(text(), "Blue Top")]');
+
+    const imageElement1 = page.locator("[src='/get_product_picture/1']");
+    const firstElement = imageElement1.locator('xpath=following-sibling::p[contains(text(), "Blue Top")]');
+    const firstElementPriceS = await imageElement1.locator('xpath=following-sibling::h2').textContent();
+
+
+    const trimmedPrice = firstElementPriceS.replace('Rs. ', '').trim();
+    console.log(trimmedPrice)
 
     await firstElement.hover()
-
     await page.locator("[data-product-id='1']", {hasText:'Add to cart'}).first().click();
+
+    await page.locator('button', {hasText:'Continue Shopping'}).click();
+
+    const imageElement2 = page.locator("[src='/get_product_picture/2']");
+    const secondElement = imageElement2.locator('xpath=following-sibling::p[contains(text(), "Men Tshirt")]');
+    await secondElement.hover()
+    await page.locator("[data-product-id='2']", {hasText:'Add to cart'}).first().click();
+
+    
 })
