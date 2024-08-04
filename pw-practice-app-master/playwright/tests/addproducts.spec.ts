@@ -13,7 +13,8 @@ test("add products in playwright", async({page}) => {
 
 
     const trimmedPrice = firstElementPriceS.replace('Rs. ', '').trim();
-    console.log(trimmedPrice)
+    console.log(parseInt(trimmedPrice))
+    
 
     await firstElement.hover()
     await page.locator("[data-product-id='1']", {hasText:'Add to cart'}).first().click();
