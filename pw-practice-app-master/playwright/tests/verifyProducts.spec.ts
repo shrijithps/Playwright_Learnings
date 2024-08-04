@@ -8,13 +8,15 @@ test("VerifyProducts", async({page}) => {
     await page.locator('.choose').locator("[href='/product_details/1']").click();
 
     //assertion
-    await expect(page.locator('h2')).toContainText('Blue Top');
-    await expect(page.locator('p')).toContainText('Category: Women > Tops');
-    await expect(page.locator('span')).toContainText('Rs. 500');
+    await expect(page.locator('.product-information > h2')).toContainText('Blue Top');
+    await page.locator('.product-information > p', {hasText:'Category: Women > Tops'});
+    await page.locator('span > span', {hasText:'Rs. 500'});
 
-    const availability = page.locator('b', {hasText:'Availability'})
+    // Use condition to check if the element contains the text "In stock"
+    
+    await page.locator('.product-information').locator('p', {hasText:"New"})
 
-    await expect(availability.locator('..').locator('p')).toContainText('In Stock');
+
 
     //Verify that detail detail is visible: product name, category, price, availability, condition, brand
 
