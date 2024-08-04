@@ -1,8 +1,9 @@
 import {test, expect} from '@playwright/test'
+import exp from 'constants';
 
 test("automationtestingsignin", async({page}) => {
 
-    let username="testuser89+002";
+    let username="testuser89+004";
     let emailAddress = username+"@test.com";
 
     await page.goto("https://www.automationexercise.com/")
@@ -56,6 +57,13 @@ test("automationtestingsignin", async({page}) => {
     await page.locator('#zipcode').fill('560076')
 
     //entering mobile number
-    await page.locator('[name="mobile_number"]').fill("987654321")
+    await page.locator("[name='mobile_number']").fill("987654321")
+
+    //creating account
+    await page.locator(":text-is('Create Account')").click()
+
+
+    //assertions
+    await expect(page.locator(':text-is("Account Created!")')).toBeVisible();
 
 })
