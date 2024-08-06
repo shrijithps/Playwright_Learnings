@@ -11,9 +11,8 @@ test("add products in playwright", async({page}) => {
     const firstElement = imageElement1.locator('xpath=following-sibling::p[contains(text(), "Blue Top")]');
     const firstElementPriceS = await imageElement1.locator('xpath=following-sibling::h2').textContent();
 
-
-    const trimmedPrice = firstElementPriceS.replace('Rs. ', '').trim();
-    console.log(parseInt(trimmedPrice))
+    const firstTrimmedPrice = firstElementPriceS.replace('Rs. ', '').trim();
+    console.log(parseInt(firstTrimmedPrice))
     
 
     await firstElement.hover()
@@ -23,6 +22,10 @@ test("add products in playwright", async({page}) => {
 
     const imageElement2 = page.locator("[src='/get_product_picture/2']");
     const secondElement = imageElement2.locator('xpath=following-sibling::p[contains(text(), "Men Tshirt")]');
+    const secondElementPriceS = await imageElement2.locator('xpath=following-sibling::h2').textContent();
+
+    const secondTrimmedPrice = secondElementPriceS.replace('Rs. ', '').trim();
+    console.log(parseInt(secondTrimmedPrice))
     await secondElement.hover()
     await page.locator("[data-product-id='2']", {hasText:'Add to cart'}).first().click();
 
