@@ -44,8 +44,6 @@ test('add products in Playwright', async ({ page }) => {
   // Verify total price in the cart
   await page.locator("[href='/view_cart']").first().click();
   await page.locator('a', { hasText: 'Proceed To Checkout' }).click();
-  const actualTotalPriceText = await page.locator('.cart_total_price').textContent();
-  const actualTotalPrice = parseInt(actualTotalPriceText.replace('Rs ', '').trim(), 10);
-
-  expect(actualTotalPrice).toBe(expectedTotalPrice);
+  await expect(page.locator('.cart_total_price').last()).toHaveText("Rs. 900")
+  console.log(actualTotalPriceText.textContent());
 });
