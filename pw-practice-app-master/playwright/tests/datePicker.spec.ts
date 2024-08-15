@@ -2,6 +2,7 @@ import {test} from '@playwright/test'
 
 test("playwright datepicker", async({page}) => {
     let expectedYear = "January 2025";
+    let expectedDate = "25"
     await page.goto("https://demo.automationtesting.in/Datepicker.html")
     await page.locator(".imgdp").click();
     let yearMonth = await page.locator(".ui-datepicker-title").textContent();
@@ -14,5 +15,13 @@ test("playwright datepicker", async({page}) => {
             console.log("Found the expected year and month")
             break;
         }   
+    }
+
+    let dates = await page.locator('[data-handler="selectDay"]').locator('a').allTextContents();
+    for(let date of dates){
+        if(date.includes(expectedDate)){
+            await page.locator('[data-handler="selectDay"]').locator('a', {hasText:expectedDate}).click();
+            break;
+        }
     }
 })
