@@ -26,11 +26,11 @@ test("playwright datepicker", async({page}) => {
          }   
      }
 
-    // let dates = await page.locator('[data-handler="selectDay"]').locator('a').allTextContents();
-    // for(let date of dates){
-    //     if(date.includes(expectedDate)){
-    //         await page.locator('[data-handler="selectDay"]').locator('a', {hasText:expectedDate}).click();
-    //         break;
-    //     }
-    // }
+     let dates = await page.locator('tr').locator('td').allTextContents();
+    for(let date of dates){
+        if(date.includes(expectedDate)){
+             await page.locator('tr').locator('td', {hasText:expectedDate}).click();
+            break;
+         }
+     }
 })
