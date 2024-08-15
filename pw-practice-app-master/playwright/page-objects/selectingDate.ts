@@ -42,6 +42,7 @@ export class SelectingDatePage extends HelperBase{
         while(!calendarMonthYear.includes(expectedMonthYear)){
             await this.page.locator("[data-name='chevron-right']").click()
             calendarMonthYear = await this.page.locator('nb-calendar-view-mode').textContent()
+            
         }
     
         await this.page.locator("[class='range-cell day-cell ng-star-inserted']").getByText(expectedDate,{exact:true}).click()
