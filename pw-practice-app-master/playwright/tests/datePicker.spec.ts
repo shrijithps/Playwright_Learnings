@@ -5,12 +5,14 @@ test("playwright datepicker", async({page}) => {
     await page.goto("https://demo.automationtesting.in/Datepicker.html")
     await page.locator(".imgdp").click();
     let yearMonth = await page.locator(".ui-datepicker-title").textContent();
-    while(!(yearMonth.includes(expectedYear))){
-        yearMonth = await page.locator(".ui-datepicker-title").textContent();
-        if(yearMonth === "January 2025")
-            console.log("hellow")
-        console.log(yearMonth)
-        await page.locator("[title='Next']").click();
-    }
 
+    while(!(yearMonth.includes(expectedYear))){
+        await page.locator("[title='Next']").click();
+        await page.waitForTimeout(500);
+        yearMonth = await page.locator(".ui-datepicker-title").textContent();
+        if (yearMonth.includes("January") && yearMonth.includes("2025")) {
+            console.log("Found the expected year and month")
+            break;
+        }   
+    }
 })
