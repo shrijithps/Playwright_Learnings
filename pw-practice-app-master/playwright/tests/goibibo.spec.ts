@@ -31,4 +31,8 @@ test("goibiotest", async({page}) => {
             await page.locator('span', {hasText:toCity}).click()
         }
     }
+
+    await page.locator("[data-id='dweb_pip_id'] > p").first().click();
+    await page.waitForTimeout(500);
+    await page.locator('span:has-text("Departure") + p').click();
 })
