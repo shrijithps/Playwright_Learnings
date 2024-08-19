@@ -36,11 +36,30 @@ test("goibiotest", async({page}) => {
     await page.waitForTimeout(500);
     await page.locator('span:has-text("Departure") + p').click();
 
-    let dates = await page.locator("[class='DayPicker-Week']").locator('div[aria-disabled="false"] > p').allInnerTexts();
+    const departureDates = await page.locator("[class='DayPicker-Week'] div[aria-disabled='false']")
     await page.waitForTimeout(1000);
-    for(let date of dates){
-        await page.locator('p', {hasText:date}).click();
-    }
 
+    for (let i = 0; i < await departureDates.count(); i++) {
+        const ariaLabel = await departureDates.nth(i).getAttribute('aria-label');
     
+    // Check if the aria-label contains the date '21'
+    if (ariaLabel && ariaLabel.includes('Aug 23')) {
+      await departureDates.nth(i).click();
+      break; // Stop after clicki
+    }
+}
+
+const returnDates = await page.locator("[class='DayPicker-Week'] div[aria-disabled='false']")
+await page.waitForTimeout(1000);
+
+for (let i = 0; i < await departureDates.count(); i++) {
+    const ariaLabel = await departureDates.nth(i).getAttribute('aria-label');
+
+// Check if the aria-label contains the date '21'
+if (ariaLabel && ariaLabel.includes('Sep 23')) {
+  await departureDates.nth(i).click();
+  break; // Stop after clicki
+}
+}
+
 })
