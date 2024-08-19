@@ -7,16 +7,28 @@ test("goibiotest", async({page}) => {
     await page.locator('p', {hasText:"Round-trip"}).click();
 
     await page.locator('span:has-text("From") + p:has-text("Enter city or airport")').click()
-    await page.waitForTimeout(200);
-    await page.locator('span:has-text("From") + p:has-text("Enter city or airport")').pressSequentially("mangalore", {delay:500});
+    await page.waitForTimeout(100);
+    await page.locator('span:has-text("From") + p:has-text("Enter city or airport")').pressSequentially("mangalore", {delay:300});
 
-    await page.waitForTimeout(2000);
-    let textcontent = await page.locator('#autoSuggest-list').locator('li').locator('span').allInnerTexts();
+    await page.waitForTimeout(1000);
+    let fromCities = await page.locator('#autoSuggest-list').locator('li').locator('span').allInnerTexts();
 
-    console.log(textcontent)
-    for(let a of textcontent){
-        if(a.includes("Mangalore")){
-            await page.locator('span', {hasText:a}).click()
+    for(let fromCity of fromCities){
+        if(fromCity.includes("Mangalore")){
+            await page.locator('span', {hasText:fromCity}).click()
+        }
+    }
+
+    await page.locator('span:has-text("To") + input[type="text"]').click()
+    await page.waitForTimeout(100);
+    await page.locator('span:has-text("To") + input[type="text"]').pressSequentially("bengaluru", {delay:300});
+
+    await page.waitForTimeout(1000);
+    let toCities = await page.locator('#autoSuggest-list').locator('li').locator('span').allInnerTexts();
+
+    for(let toCity of toCities){
+        if(toCity.includes("Bengaluru")){
+            await page.locator('span', {hasText:toCity}).click()
         }
     }
 })
