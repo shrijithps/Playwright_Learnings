@@ -35,4 +35,12 @@ test("goibiotest", async({page}) => {
     await page.locator("[data-id='dweb_pip_id'] > p").first().click();
     await page.waitForTimeout(500);
     await page.locator('span:has-text("Departure") + p').click();
+
+    let dates = await page.locator("[class='DayPicker-Week']").locator('div[aria-disabled="false"] > p').allInnerTexts();
+    await page.waitForTimeout(1000);
+    for(let date of dates){
+        await page.locator('p', {hasText:date}).click();
+    }
+
+    
 })
