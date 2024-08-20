@@ -40,8 +40,6 @@ test("goibiotest", async({page}) => {
 
     for (let i = 0; i < await departureDates.count(); i++) {
         const ariaLabel = await departureDates.nth(i).getAttribute('aria-label');
-    
-    // Check if the aria-label contains the date '21'
     if (ariaLabel && ariaLabel.includes('Aug 23')) {
       await departureDates.nth(i).click();
       break; // Stop after clicki
@@ -54,7 +52,7 @@ await page.waitForTimeout(1000);
 for (let i = 0; i < await departureDates.count(); i++) {
     const ariaLabel = await departureDates.nth(i).getAttribute('aria-label');
 
-// Check if the aria-label contains the date '21'
+    
 if (ariaLabel && ariaLabel.includes('Sep 23')) {
   await departureDates.nth(i).click();
   break; // Stop after clicki
