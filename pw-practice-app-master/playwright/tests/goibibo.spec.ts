@@ -1,5 +1,4 @@
 import {test} from '@playwright/test';
-import { text } from 'stream/consumers';
 
 test("goibiotest", async({page}) => {
     await page.goto("https://www.goibibo.com/flights/");
@@ -12,7 +11,7 @@ test("goibiotest", async({page}) => {
 
     await page.waitForTimeout(1000);
     let fromCities = await page.locator('#autoSuggest-list').locator('li').locator('span').allInnerTexts();
-
+    console.log(fromCities)
     for(let fromCity of fromCities){
         if(fromCity.includes("Mangalore")){
             await page.locator('span', {hasText:fromCity}).click()
